@@ -1,0 +1,7 @@
+ja:
+  activemodel:
+    models:
+      card:
+    attributes:
+      card:
+        department: 学科

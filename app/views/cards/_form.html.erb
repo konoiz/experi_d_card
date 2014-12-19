@@ -1,0 +1,95 @@
+<%= form_for(@card) do |f| %>
+  <% if @card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+      <% @card.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  
+   <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+<!--
+  <div class="field">
+    <%= f.label :kana_last_name %>
+    <%= f.text_field :kana_last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kana_first_name %>
+    <%= f.text_field :kana_first_name %>
+  </div>
+-->
+ <div class="field">
+    <%= f.label :postalcode %>
+    <%= f.text_field(:postalcode, maxlenght: 7) %>
+    <input type="button" value="郵便番号から検索" id="getarea-button" />
+    <span id="postalcode-result"></span>
+ </div>
+
+ <div class="field">
+    <%= f.label :address_prefectural %>
+    <%= f.select(:address_prefectural, @prefectural.collect{|t|[t.name,t.id]}, {prompt: "選択してください"}) %>
+ </div>
+
+ <div class="field">
+    <%= f.label :address_city %>
+    <%= f.text_field(:address_city) %>
+ </div>
+
+ <div class="field">
+    <%= f.label :address_street %>
+    <%= f.text_field(:address_street) %>
+ </div>
+
+ <div class="field">
+    <%= f.label :address_building %>
+    <%= f.text_field(:address_building) %>
+ </div>
+
+ <div class="field">
+    <%= f.label :tel %>
+    <%= f.text_field :tel %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :free_text %>
+    <%= f.text_field :free_text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :department %>
+    <%= f.select(:department, Department.all.collect{|t|[t.name, t.id]}, {prompt: "選択してください"}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :course %>
+    <%= f.select :course, options_for_select(@course.collect{|course|[course.name, course.id]}, 0) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :laboratory %>
+    <%= f.select :laboratory, options_for_select(@laboratory.collect{|laboratory|[laboratory.name, laboratory.id]}, 0) %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

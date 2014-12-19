@@ -1,0 +1,1 @@
+$("#card_course").html("<%= escape_javascript(options_for_select(@course.map{ |t| [t.name, t.id] })) %>");

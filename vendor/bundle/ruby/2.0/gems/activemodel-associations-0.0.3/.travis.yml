@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.1.1
+  - 2.0.0
+gemfile:
+  - gemfiles/activerecord-40.gemfile
+  - gemfiles/activerecord-41.gemfile
+  - gemfiles/activerecord-42.gemfile

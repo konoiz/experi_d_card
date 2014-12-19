@@ -1,0 +1,39 @@
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+
+  <!---- 中略 ---->
+
+    .form-group
+      .row
+        .col-sm-4
+          = f.label :address_postal_code
+            .col-sm-8
+              <!---- 結果MSG書き込み用のdiv ---->
+                #postalcode-result
+                  .row
+                    .col-sm-4
+                      <!---- 郵便番号入力フォーム ---->
+                = f.text_field :address_postal_code, maxlength: 7, class: "form-control address"
+              .col-sm-8
+                <!---- 郵便番号送信＆JSON受信ボタン ---->
+                .btn.btn-default#getarea-button <i class="fa fa-map-marker"></i> 郵便番号から住所を入力
+          .form-group
+            = f.label :address_prefectural, class: "control-label"
+            %br/
+            <!---- 県名のセレクトによる選択 ---->
+            = f.select :address_prefectural, @prefectural.collect{|t|[t.name,t.id]}, {prompt: "選択して下さい"}, class: "form-control address"
+          .form-group
+            = f.label :address_city
+            %br/
+            <!---- 市区町村の入力フォーム ---->
+            = f.text_field :address_city, class: "form-control address"
+          .form-group
+            = f.label :address_street
+            %br/
+            <!---- 通りの入力フォーム ---->
+            = f.text_field :address_street, class: "form-control address"
+          .form-group
+            = f.label :address_building
+            %br/
+            <!---- 建物の入力フォーム ---->
+            = f.text_field :address_building, class: "form-control address"
+

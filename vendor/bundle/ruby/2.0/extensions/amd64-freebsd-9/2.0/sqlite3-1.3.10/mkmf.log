@@ -1,0 +1,486 @@
+find_header: checking for sqlite3.h... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic     -lruby20  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+/usr/local/lib/ruby/2.0/mkmf.rb:373: warning: Insecure world writable dir /home/konoiz in PATH, mode 040777
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"cpp -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <sqlite3.h>
+/* end */
+
+--------------------
+
+find_library: checking for sqlite3_libversion_number() in -lsqlite3... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic     -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'sqlite3_libversion_number' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_libversion_number; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_libversion_number; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic     -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { sqlite3_libversion_number(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for rb_proc_arity()... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_proc_arity; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for rb_integer_pack()... -------------------- no
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'rb_integer_pack' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_integer_pack; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_integer_pack; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+/tmp//cczrqO6J.o: 関数 `t' 内:
+conftest.c:(.text+0x7): `rb_integer_pack' に対する定義されていない参照です
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { rb_integer_pack(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for sqlite3_initialize()... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'sqlite3_initialize' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_initialize; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_initialize; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { sqlite3_initialize(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for sqlite3_backup_init()... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'sqlite3_backup_init' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_backup_init; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_backup_init; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { sqlite3_backup_init(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for sqlite3_column_database_name()... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'sqlite3_column_database_name' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_column_database_name; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_column_database_name; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { sqlite3_column_database_name(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for sqlite3_enable_load_extension()... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'sqlite3_enable_load_extension' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_enable_load_extension; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_enable_load_extension; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { sqlite3_enable_load_extension(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for sqlite3_load_extension()... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'sqlite3_load_extension' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_load_extension; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_load_extension; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { sqlite3_load_extension(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for sqlite3_open_v2()... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'sqlite3_open_v2' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_open_v2; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_open_v2; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { sqlite3_open_v2(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for sqlite3_prepare_v2()... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'sqlite3_prepare_v2' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_prepare_v2; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))sqlite3_prepare_v2; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic    -lsqlite3  -lruby20 -lsqlite3  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { sqlite3_prepare_v2(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_type: checking for sqlite3_int64 in sqlite3.h... -------------------- yes
+
+"cc -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC   -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <sqlite3.h>
+4: 
+5: /*top*/
+6: typedef sqlite3_int64 conftest_type;
+7: int conftestval[sizeof(conftest_type)?1:-1];
+/* end */
+
+--------------------
+
+have_type: checking for sqlite3_uint64 in sqlite3.h... -------------------- yes
+
+"cc -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC   -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <sqlite3.h>
+4: 
+5: /*top*/
+6: typedef sqlite3_uint64 conftest_type;
+7: int conftestval[sizeof(conftest_type)?1:-1];
+/* end */
+
+--------------------
+
