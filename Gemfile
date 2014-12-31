@@ -11,6 +11,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'activemodel-associations'
+gem 'bootstrap-sass'
+gem 'sprockets'
+gem 'i18n-js'
 
 group :development do
     gem 'sqlite3'

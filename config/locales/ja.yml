@@ -198,10 +198,12 @@ ja:
       card:
     attributes:
       card:
+        name : 名前
+        kana_name: 名前(カナ)
         first_name: 名前 
         last_name: 名字
-        kana_first_name: 名前(かな)
-        kana_last_name: 名字(かな)
+        kana_first_name: 名前(カナ)
+        kana_last_name: 名字(カナ:)
         postalcode: 郵便番号
         address_prefectural: 都道府県
         address_city: 市区町村
@@ -214,5 +216,9 @@ ja:
         course: コース・専攻
         laboratory: 研究室・プロジェクト
         free_text: 自由入力
-        
+  guide:
+    card:
+      name_placeholder: 名前を入力してください
+      postalcode_submit: 郵便番号から検索
+      please_select: 選択してください
 

@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  
-   <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-<!--
-  <div class="field">
-    <%= f.label :kana_last_name %>
-    <%= f.text_field :kana_last_name %>
+  <%# Full Name %>
+  <div class="form-group has-success">
+    <%= f.label :name %><span class="asd">(必須)</span>
+    <%= f.text_field :name, :class => 'form-control', :placeholder => t("guide.card.name_placeholder") %>
   </div>
 
-  <div class="field">
-    <%= f.label :kana_first_name %>
-    <%= f.text_field :kana_first_name %>
+  <%# Name Furigana %>
+  <div class="form-group has-success">
+    <%= f.label :kana_name %><span class="asd">(必須)</span>
+    <%= f.text_field :kana_name, :class => 'form-control', :required => true, :placeholder => '名前を入力してください' %>
   </div>
--->
- <div class="field">
-    <%= f.label :postalcode %>
-    <%= f.text_field(:postalcode, maxlenght: 7) %>
-    <input type="button" value="郵便番号から検索" id="getarea-button" />
+
+  <%# postacode %>
+  <div class="form-group has-success">
+    <%= f.label :postalcode, style: "display: block;" %></span>
+    <%= f.text_field :postalcode, :class => 'form-control', style: "display: inline; width: 25%" %>
+    <%= f.button t("guide.card.postalcode_submit"), id: "getarea-button", type: "button" %>
     <span id="postalcode-result"></span>
- </div>
+  </div>
+
+  <%# prefectural %>
+  <div class="form-group has-success">
+    <%= f.label :address_prefectural %>
+    <%= f.select :address_prefectural, @prefectural.collect{|t|[t.name, t.id]}, {prompt: t("guide.card.please_select")} %>
+  </div>
+
 
  <div class="field">
     <%= f.label :address_prefectural %>

@@ -75,4 +75,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # i18n-js
+  config.assets.precompile += %w(application.js application.css)
+  files = Dir[Rails.root.join('app', 'assets', 'javascripts', 'i18n', '*.js')]
+  files.map! {|file| file.sub(%r(#{Rails.root}/app/assets/javascripts/), '')}
+  config.assets.precompile += files
 end

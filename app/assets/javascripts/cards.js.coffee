@@ -42,7 +42,7 @@ $ ->
        error: (jqXHR, textStatus, errorThrown) ->
          console.log("AJAX Error: #{textStatus}")
        success: (data, textStatus, jqXHR) ->
-         console.log("Dynamic country select OK!")
+         console.log("45 ok")
     $.ajax 'update_laboratories',
        type: 'GET'
        dataType: 'script'
@@ -52,5 +52,5 @@ $ ->
        error: (jqXHR, textStatus, errorThrown) ->
          console.log("AJAX Error: #{textStatus}")
        success: (data, textStatus, jqXHR) ->
-         console.log("Dynamic country select OK!")
+         console.log("55 ok")
 

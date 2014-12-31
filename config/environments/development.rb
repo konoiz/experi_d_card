@@ -34,4 +34,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  # i18n-js
+  config.assets.precompile += %w(application.js application.css)
+  files = Dir[Rails.root.join('app', 'assets', 'javascripts', 'i18n', '*.js')]
+  files.map! {|file| file.sub(%r(#{Rails.root}/app/assets/javascripts/), '')}
+  config.assets.precompile += files
+
 end
