@@ -15,6 +15,9 @@ gem 'bootstrap-sass'
 gem 'bootstrap-select-rails'
 gem 'sprockets'
 gem 'i18n-js'
+gem 'execjs'
+gem 'therubyracer'
+
 
 group :development do
     gem 'sqlite3'
