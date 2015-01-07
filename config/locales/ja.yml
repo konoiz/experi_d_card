@@ -134,6 +134,8 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+      contact:
+        create: 送信
   number:
     currency:
       format:
@@ -221,8 +223,13 @@ ja:
         department: 学科
         email: メールアドレス
         subject: 用件
+        body: 内容
+        bug: 不具合
+        other: その他
   guide:
     name_placeholder: 名前を入力してください
+    email_placeholder: メールアドレスを入力してください
     postalcode_submit: 郵便番号から検索
     please_select: 選択してください
+    contact_body: 問い合わせ内容を入力してください
 

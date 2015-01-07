@@ -16,37 +16,37 @@
     必要事項を入力して送信ボタンを押してください
   </p>
 
-    <div class="form-group has-success">
+  <%# name %>
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control', placeholder: t("guide.card.name_placeholder") %>
+    <%= f.text_field :name, class: 'form-control', placeholder: t("guide.name_placeholder") %>
   </div>
 
-    <%# department %>
-    <div class="form-group has-success">
-      <%= f.label :department %>
-      <%= f.select(:department, Department.all.collect{|t|[t.name, t.id]}, {prompt: t("guide.please_select")}) %>
-    </div>
+  <%# email %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control', placeholder: t("guide.email_placeholder") %>
+  </div>
 
+  <%# department %>
+  <div class="form-group">
+    <%= f.label :department %>
+    <%= f.select(:department, Department.all.collect{|t|[t.name, t.id]}, {prompt: t("guide.please_select")}) %>
+  </div>
 
+  <%# subject %>
+  <div class="form-group">
+    <%= f.label :subject %>
+    <%= f.select :subject, {"動作不良" => "bug", "その他" => "other"} %>
+  </div>
 
+  <%# body %>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, size: "50x10", class: 'form-control', placeholder: t("guide.contact_body") %>
+  </div>
 
-
-    <p><label>
-      項目:
-      <select name="department" id="department">
-        <option value="crash">動作不良</option>
-        <option value="any">なんか</option>
-        <option value="other">その他質問</option>
-      </select>
-
-      <p><label> 内容: <textarea name="example" cols="50" rows="10"></textarea>
-        <br>
-        <br>
-        <button type="button" class="btn btn-primary">送信</button><br>
-      </form>
-
-      <div class="actions">
-        <%= f.submit %>
-      </div>
-
-    <% end %>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

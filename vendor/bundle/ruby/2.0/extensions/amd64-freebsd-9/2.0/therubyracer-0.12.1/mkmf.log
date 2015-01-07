@@ -1,0 +1,57 @@
+have_library: checking for main() in -lpthread... -------------------- yes
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic     -lruby20  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+/usr/local/lib/ruby/2.0/mkmf.rb:373: warning: Insecure world writable dir /home/konoiz in PATH, mode 040777
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic     -lruby20 -lpthread  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+conftest.c: In function 't':
+conftest.c:5:57: error: 'main' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+                                                         ^
+conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"cc -o conftest -I/usr/local/include/ruby-2.0//amd64-freebsd9 -I/usr/local/include/ruby-2.0//ruby/backward -I/usr/local/include/ruby-2.0/ -I. -I/usr/local/include    -O3 -fno-fast-math -fno-omit-frame-pointer -O2 -pipe -fno-strict-aliasing -fPIC conftest.c  -L. -L/usr/local/lib -L.  -Wl,-rpath,/usr/lib:/usr/local/lib -fstack-protector -rdynamic     -lruby20 -lpthread  -lexecinfo -lcrypt -lm -L/usr/local/lib -pthread  -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { main(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
