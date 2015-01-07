@@ -25,6 +25,6 @@ production:
     encoding: utf8
     database: card
     pool: 5
-    usernamer: card
+    username: card
     password: website
     host: localhost
