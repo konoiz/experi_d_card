@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   require "rexml/document"
+  require "shellwords"
   include REXML
 
   # GET /cards
@@ -30,18 +31,47 @@ class CardsController < ApplicationController
   # POST /cards.json
   def create
     @card = Card.new(card_params)
-    svg = REXML::Document.new(open("app/assets/images/test.svg"))
-    forms = params.require(:card).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :department, :postalcode, :address_prefectural, :address_city, :address_street, :address_building, :tel, :email, :course, :laboratory, :free_text)
+    mm = 3.543307
+    paper = File.read("app/assets/images/A4_template.svg")
+    svg = REXML::Document.new(open("app/assets/images/template_g.svg"))
+    forms = params.require(:card).permit(:name, :kana_name, :department, :postalcode, :address_prefectural, :address_city, :address_street, :address_building, :tel, :email, :course, :laboratory, :free_text)
 
-    svg.root.elements["//*[@id='text_firstname']"].text = forms[:first_name]
-    svg.root.elements["//*[@id='text_lastname']"].text = forms[:last_name]
-    svg.root.elements["//*[@id='text_schools']"].text = Department.find(forms[:department]).name
+    svg.root.elements["//*[@id='text_name']"].text = forms[:name]
+    svg.root.elements["//*[@id='text_department']"].text =  School.find(Department.find(forms[:department]).school).name + Department.find(forms[:department]).name
     svg.root.elements["//*[@id='text_lab']"].text = Laboratory.find(forms[:laboratory]).name
-    svg.root.elements["//*[@id='text_tel']"].text = forms[:tel]
-    svg.root.elements["//*[@id='text_mail']"].text = forms[:email]
-    svg.root.elements["//*[@id='text_free']"].text = forms[:free]
+    svg.root.elements["//*[@id='text_tel']"].text = 'tel: ' + forms[:tel]
+    svg.root.elements["//*[@id='text_mail']"].text = 'mail: ' + forms[:email]
+    svg.root.elements["//*[@id='text_free']"].text = forms[:free_text]
 
-    send_data(svg)
+    card_text = ""
+    xMargin = 14 * mm
+    yMargin = 11 * mm
+    xSize = 91 * mm
+    ySize = 55 * mm
+    debug = ""
+    for xNum in 0..1 do
+      for yNum in 0..4 do
+        x = xMargin + xSize * xNum
+        y = yMargin + ySize * yNum
+        svgText = svg.root.to_s
+        
+        svgText.gsub!(/<svg[^>]+>/, '')
+        svgText.gsub!(/<\/svg>/, '')
+        svgText.gsub!(/id='([^']+)'/) { "id='" + $1 + xNum.to_s + "_" + yNum.to_s + "'" }
+        svgText.gsub!(/x='([0-9.]+)'/) { "x='" + ($1.to_f + x).to_s + "'" }
+        svgText.gsub!(/y='([0-9.]+)'/) { "y='" + ($1.to_f + y).to_s + "'" }
+
+        debug = svgText
+      
+        paper.gsub!(/<g \/>/, svgText + "<g />")
+      end
+    end
+    paper.gsub!(/"/, "'")
+
+    #send_data(paper, disposition: "inline")
+    #send_data(debug, filename: "text.txt", type: "text/plain", disposition: "inline")
+    pdf = `echo "#{paper}" | cairosvg -`
+    send_data pdf, filename: "card.pdf", type: "application/pdf", disposition: "inline"
 
     #respond_to do |format|
     #  if @card.save

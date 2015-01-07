@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'activemodel-associations'
 gem 'bootstrap-sass'
+gem 'bootstrap-select-rails'
 gem 'sprockets'
 gem 'i18n-js'
 

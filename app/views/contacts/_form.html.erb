@@ -1,0 +1,52 @@
+<%= form_for(@contact) do |f| %>
+  <% if @contact.errors.any? %>
+  <div id="error_explanation">
+  <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+  <ul>
+    <% @contact.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+  <% end %>
+  </ul>
+  </div>
+  <% end %>
+
+  <p class="howto">
+    不具合，ご質問等のフォームになります<br>
+    必要事項を入力して送信ボタンを押してください
+  </p>
+
+    <div class="form-group has-success">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: t("guide.card.name_placeholder") %>
+  </div>
+
+    <%# department %>
+    <div class="form-group has-success">
+      <%= f.label :department %>
+      <%= f.select(:department, Department.all.collect{|t|[t.name, t.id]}, {prompt: t("guide.please_select")}) %>
+    </div>
+
+
+
+
+
+    <p><label>
+      項目:
+      <select name="department" id="department">
+        <option value="crash">動作不良</option>
+        <option value="any">なんか</option>
+        <option value="other">その他質問</option>
+      </select>
+
+      <p><label> 内容: <textarea name="example" cols="50" rows="10"></textarea>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary">送信</button><br>
+      </form>
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+
+    <% end %>

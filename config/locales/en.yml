@@ -21,6 +21,9 @@
 
 en:
   hello: "Hello world"
+
+  js:
+    please_select: Please select
     
   activemodel:
     models:

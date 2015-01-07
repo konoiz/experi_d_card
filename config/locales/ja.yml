@@ -216,9 +216,13 @@ ja:
         course: コース・専攻
         laboratory: 研究室・プロジェクト
         free_text: 自由入力
+      contact:
+        name: 名前
+        department: 学科
+        email: メールアドレス
+        subject: 用件
   guide:
-    card:
-      name_placeholder: 名前を入力してください
-      postalcode_submit: 郵便番号から検索
-      please_select: 選択してください
+    name_placeholder: 名前を入力してください
+    postalcode_submit: 郵便番号から検索
+    please_select: 選択してください
 

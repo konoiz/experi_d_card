@@ -16,4 +16,8 @@
 //= require_tree .
 //
 //= require i18n
-//= require i18n/translations
+//= stub i18n/translations
+//= stub i18n/ja
+//= stub i18n/en
+//
+//= require bootstrap-select

@@ -54,3 +54,8 @@ $ ->
        success: (data, textStatus, jqXHR) ->
          console.log("55 ok")
 
+$(document).ready ->
+  ### bootstrap-select ###
+  $('.selectpicker').selectpicker()
+
+
