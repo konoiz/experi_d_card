@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "cards" => "cards#new"
   get "cards/get_area"
   get "cards/update_courses", as: 'update_courses'
   get "cards/update_laboratories", as: 'update_laboratories'
