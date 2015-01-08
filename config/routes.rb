@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get "cards/" => "cards#new"
+  get 'static_pages/home'
+  get 'static_pages/help'
+
+  root :to => "static_pages#home"
+  get "howto" => "static_pages#help"
+  get "contact" => "contacts#new"
+  get "cards" => "cards#new"
+
   get "cards/get_area"
   get "cards/update_courses", as: 'update_courses'
   get "cards/update_laboratories", as: 'update_laboratories'
