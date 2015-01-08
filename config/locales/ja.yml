@@ -218,6 +218,8 @@ ja:
         course: コース・専攻
         laboratory: 研究室・プロジェクト
         free_text: 自由入力
+        card_template: 名刺デザイン
+        paper_template: 用紙
       contact:
         name: 名前
         department: 学科

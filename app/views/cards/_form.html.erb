@@ -11,6 +11,26 @@
     </div>
   <% end %>
 
+<div class="my_contents">
+  <h2>1. デザイン選択</h2>
+
+  <%# Paper %>
+  <div class="form-group has-success">
+    <%= f.label :paper_template %><span class="asd">(必須)</span>
+    <%= f.select :paper_template, @papers.collect{|t|[t.name,t.id]}, {prompt: t("guide.please_select")}, class: "form-control" %>
+  </div>
+
+  <%# Card %>
+  <div class="form-group has-success">
+    <%= f.label :card_template %><span class="asd">(必須)</span>
+    <%= f.select :card_template, @cards.collect{|t|[t.name,t.id]}, {prompt: t("guide.please_select")}, class: "form-control" %>
+  </div>
+
+
+
+</div>
+<div class="my_contents">
+  <h2>2. 情報入力</h2>
   <%# Full Name %>
   <div class="form-group has-success">
     <%= f.label :name %><span class="asd">(必須)</span>
@@ -39,9 +59,9 @@
   </div>
   <% end %>
 
- <div class="field">
+ <div class="form-group has-success">
     <%= f.label :address_prefectural %>
-    <%= f.select(:address_prefectural, @prefectural.collect{|t|[t.name,t.id]}, {prompt: "選択してください"}) %>
+    <%= f.select :address_prefectural, @prefectural.collect{|t|[t.name,t.id]}, {prompt: t("guide.please_select")}, class: "form-control" %>
  </div>
 
 
@@ -84,23 +104,26 @@
   <%# department %>
   <div class="form-group has-success">
     <%= f.label :department %>
-    <%= f.select(:department, Department.all.collect{|t|[t.name, t.id]}, {prompt: "選択してください"}) %>
+    <%= f.select :department, Department.all.collect{|t|[t.name, t.id]}, {prompt: t("guide.please_select")}, class: "form-control" %>
   </div>
 
   <%# course %>
   <div class="form-group has-success">
     <%= f.label :course %>
-    <%= f.select :course, options_for_select(@course.collect{|course|[course.name, course.id]}, 0) %>
+    <%= f.select :course, options_for_select(@course.collect{|course|[course.name, course.id]}, 0), {}, class: "form-control" %>
   </div>
 
   <%# laboratory %>
-  <div class="field">
+  <div class="form-group has-success">
     <%= f.label :laboratory %>
-    <%= f.select :laboratory, options_for_select(@laboratory.collect{|laboratory|[laboratory.name, laboratory.id]}, 0) %>
+    <%= f.select :laboratory, options_for_select(@laboratory.collect{|laboratory|[laboratory.name, laboratory.id]}, 0), {}, class: "form-control" %>
   </div>
+</div>
 
 
+<div class="my_contents">
   <div class="actions">
-    <%= f.submit "Generate" %>
+    <%= f.submit "ダウンロード", class: "center-block btn btn-primary" %>
   </div>
+</div>
 <% end %>

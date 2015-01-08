@@ -19,6 +19,8 @@ class CardsController < ApplicationController
   def new
     @card = Card.new
     @prefectural = Prefectural.all
+    @papers = PaperTemplate.all
+    @cards = CardTemplate.all
     @course = [Course.new(name: "学部を選択してください", id:"0")]
     @laboratory = [Laboratory.new(name: "学部を選択してください", id:"0")]
   end
@@ -32,9 +34,13 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     mm = 3.543307
-    paper = File.read("app/assets/images/A4_template.svg")
-    svg = REXML::Document.new(open("app/assets/images/template_g.svg"))
-    forms = params.require(:card).permit(:name, :kana_name, :department, :postalcode, :address_prefectural, :address_city, :address_street, :address_building, :tel, :email, :course, :laboratory, :free_text)
+    forms = params.require(:card).permit(:name, :kana_name, :department, :postalcode, :address_prefectural, :address_city, :address_street, :address_building, :tel, :email, :course, :laboratory, :free_text, :card_template, :paper_template)
+
+    paper_template = PaperTemplate.find(forms[:paper_template])
+    paper = File.read("app/assets/images/paper/" + paper_template.path)
+
+    card_template = CardTemplate.find(forms[:card_template])
+    svg = REXML::Document.new(open("app/assets/images/card/" + card_template.path))
 
     svg.root.elements["//*[@id='text_name']"].text = forms[:name]
     svg.root.elements["//*[@id='text_department']"].text =  School.find(Department.find(forms[:department]).school).name + Department.find(forms[:department]).name
@@ -44,13 +50,13 @@ class CardsController < ApplicationController
     svg.root.elements["//*[@id='text_free']"].text = forms[:free_text]
 
     card_text = ""
-    xMargin = 14 * mm
-    yMargin = 11 * mm
-    xSize = 91 * mm
-    ySize = 55 * mm
+    xMargin = paper_template.margin_x * mm
+    yMargin = paper_template.margin_y * mm
+    xSize = card_template.size_x * mm
+    ySize = card_template.size_y * mm
     debug = ""
-    for xNum in 0..1 do
-      for yNum in 0..4 do
+    for xNum in 0..(paper_template.cols - 1) do
+      for yNum in 0..(paper_template.rows - 1) do
         x = xMargin + xSize * xNum
         y = yMargin + ySize * yNum
         svgText = svg.root.to_s

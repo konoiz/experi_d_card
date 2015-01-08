@@ -21,5 +21,6 @@ module Exp
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :ja
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
   end
 end
