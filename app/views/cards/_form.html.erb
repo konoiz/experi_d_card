@@ -17,13 +17,13 @@
   <%# Paper %>
   <div class="form-group has-success">
     <%= f.label :paper_template %><span class="asd">(必須)</span>
-    <%= f.select :paper_template, @papers.collect{|t|[t.name,t.id]}, {prompt: t("guide.please_select")}, class: "form-control" %>
+    <%= f.select :paper_template, @papers.collect{|t|[t.name,t.id]}, {prompt: t("guide.please_select")}, required: true, class: "form-control" %>
   </div>
 
   <%# Card %>
   <div class="form-group has-success">
     <%= f.label :card_template %><span class="asd">(必須)</span>
-    <%= f.select :card_template, @cards.collect{|t|[t.name,t.id]}, {prompt: t("guide.please_select")}, class: "form-control" %>
+    <%= f.select :card_template, @cards.collect{|t|[t.name,t.id]}, {prompt: t("guide.please_select")}, required: true, class: "form-control" %>
   </div>
 
 
@@ -34,12 +34,12 @@
   <%# Full Name %>
   <div class="form-group has-success">
     <%= f.label :name %><span class="asd">(必須)</span>
-    <%= f.text_field :name, class: 'form-control', placeholder: t("guide.name_placeholder") %>
+    <%= f.text_field :name, class: 'form-control', prequired: true, laceholder: t("guide.name_placeholder") %>
   </div>
 
   <%# Name Furigana %>
   <div class="form-group has-success">
-    <%= f.label :kana_name %><span class="asd">(必須)</span>
+    <%= f.label :kana_name %>
     <%= f.text_field :kana_name, class: 'form-control', required: true, placeholder: '名前を入力してください' %>
   </div>
 
