@@ -34,13 +34,13 @@
   <%# Full Name %>
   <div class="form-group has-success">
     <%= f.label :name %><span class="asd">(必須)</span>
-    <%= f.text_field :name, class: 'form-control', prequired: true, laceholder: t("guide.name_placeholder") %>
+    <%= f.text_field :name, class: 'form-control', required: true, laceholder: t("guide.name_placeholder") %>
   </div>
 
   <%# Name Furigana %>
   <div class="form-group has-success">
     <%= f.label :kana_name %>
-    <%= f.text_field :kana_name, class: 'form-control', required: true, placeholder: '名前を入力してください' %>
+    <%= f.text_field :kana_name, class: 'form-control',  placeholder: '名前を入力してください' %>
   </div>
 
   <%# postacode %>

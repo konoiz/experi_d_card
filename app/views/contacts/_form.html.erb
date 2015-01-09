@@ -31,13 +31,13 @@
   <%# department %>
   <div class="form-group">
     <%= f.label :department %>
-    <%= f.select(:department, Department.all.collect{|t|[t.name, t.id]}, {prompt: t("guide.please_select")}) %>
+    <%= f.select :department, Department.all.collect{|t|[t.name, t.id]}, {prompt: t("guide.please_select")}, class: "form-control" %>
   </div>
 
   <%# subject %>
   <div class="form-group">
     <%= f.label :subject %>
-    <%= f.select :subject, {"動作不良" => "bug", "その他" => "other"} %>
+    <%= f.select :subject, {"動作不良" => "bug", "その他" => "other"}, {}, class: "form-control" %>
   </div>
 
   <%# body %>

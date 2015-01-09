@@ -2,6 +2,7 @@ class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   require "rexml/document"
   require "shellwords"
+  require "securerandom"
   include REXML
 
   # GET /cards
@@ -21,8 +22,8 @@ class CardsController < ApplicationController
     @prefectural = Prefectural.all
     @papers = PaperTemplate.all
     @cards = CardTemplate.all
-    @course = [Course.new(name: "学部を選択してください", id:"0")]
-    @laboratory = [Laboratory.new(name: "学部を選択してください", id:"0")]
+    @course = [Course.new(name: "学部を選択してください", id:"")]
+    @laboratory = [Laboratory.new(name: "学部を選択してください", id:"")]
   end
 
   # GET /cards/1/edit
@@ -42,12 +43,65 @@ class CardsController < ApplicationController
     card_template = CardTemplate.find(forms[:card_template])
     svg = REXML::Document.new(open("app/assets/images/card/" + card_template.path))
 
+    # jikanganai
     svg.root.elements["//*[@id='text_name']"].text = forms[:name]
-    svg.root.elements["//*[@id='text_department']"].text =  School.find(Department.find(forms[:department]).school).name + Department.find(forms[:department]).name
-    svg.root.elements["//*[@id='text_lab']"].text = Laboratory.find(forms[:laboratory]).name
-    svg.root.elements["//*[@id='text_tel']"].text = 'tel: ' + forms[:tel]
-    svg.root.elements["//*[@id='text_mail']"].text = 'mail: ' + forms[:email]
-    svg.root.elements["//*[@id='text_free']"].text = forms[:free_text]
+
+    if card_template.department
+      if forms[:department].present?
+        svg.root.elements["//*[@id='text_department']"].text =  School.find(Department.find(forms[:department]).school).name + Department.find(forms[:department]).name
+      else 
+        svg.root.elements["//*[@id='text_department']"].text = ""
+      end
+    end
+
+    if card_template.course and forms[:course]
+      if forms[:course].present?
+        svg.root.elements["//*[@id='text_course']"].text = Course.find(forms[:course]).name
+      else
+        svg.root.elements["//*[@id='text_course']"].text =  ""
+      end
+    end
+
+    
+    if card_template.laboratory and forms[:laboratory]
+      if forms[:laboratory].present?
+        svg.root.elements["//*[@id='text_lab']"].text = Laboratory.find(forms[:laboratory]).name
+      else
+        svg.root.elements["//*[@id='text_lab']"].text =  ""
+      end
+    end
+
+    if card_template.tel
+      if forms[:tel].present?
+        svg.root.elements["//*[@id='text_tel']"].text = forms[:tel]
+      else
+        svg.root.elements["//*[@id='text_tel']"].text = ""
+      end
+    end
+
+    if card_template.email
+      if forms[:email].present?
+        svg.root.elements["//*[@id='text_email']"].text = forms[:email]
+      else
+        svg.root.elements["//*[@id='text_email']"].text = ""
+      end
+    end
+
+    if card_template.free
+      if forms[:free_text].present?
+        svg.root.elements["//*[@id='text_free']"].text = forms[:free_text]
+      else
+        svg.root.elements["//*[@id='text_free']"].text = ""
+      end
+    end
+
+    if card_template.address_city
+      if forms[:address_city].present?
+        svg.root.elements["//*[@id='text_address']"].text = Prefectural.find(forms[:address_prefectural]).name + forms[:address_city] + forms[:address_street] + forms[:address_building]
+      else
+        svg.root.elements["//*[@id='text_address']"].text = ""
+      end
+    end
 
     card_text = ""
     xMargin = paper_template.margin_x * mm
@@ -66,28 +120,23 @@ class CardsController < ApplicationController
         svgText.gsub!(/id='([^']+)'/) { "id='" + $1 + xNum.to_s + "_" + yNum.to_s + "'" }
         svgText.gsub!(/x='([0-9.]+)'/) { "x='" + ($1.to_f + x).to_s + "'" }
         svgText.gsub!(/y='([0-9.]+)'/) { "y='" + ($1.to_f + y).to_s + "'" }
+        svgText.gsub!(/d='m ([0-9.]+),([0-9.]+)/) { "d='m #{($1.to_f + x).to_s},#{($2.to_f + y).to_s}" }
 
-        debug = svgText
-      
         paper.gsub!(/<g \/>/, svgText + "<g />")
       end
     end
     paper.gsub!(/"/, "'")
 
-    #send_data(paper, disposition: "inline")
-    #send_data(debug, filename: "text.txt", type: "text/plain", disposition: "inline")
-    pdf = `echo "#{paper}" | cairosvg -`
-    send_data pdf, filename: "card.pdf", type: "application/pdf", disposition: "inline"
+    filename = SecureRandom.hex
+    svgFile = File.open("tmp/#{filename}.svg", 'w')
+    svgFile.puts paper
+    pdf = `cat tmp/#{filename}.svg | cairosvg -` 
+    svgFile.close
+    File.unlink("tmp/#{filename}.svg")
 
-    #respond_to do |format|
-    #  if @card.save
-    #    format.html { redirect_to @card, notice: 'Card was successfully created.' }
-    ##    format.json { render :show, status: :created, location: @card }
-    #  else
-    ##    format.html { render :new }
-    #    format.json { render json: @card.errors, status: :unprocessable_entity }
-    #  end
-    #end
+    #pdf = `echo "#{paper}" | cairosvg -`
+    send_data pdf, filename: "card.pdf", type: "application/pdf", disposition: "inline"
+    
   end
 
   # PATCH/PUT /cards/1
